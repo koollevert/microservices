@@ -1,0 +1,14 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: tckt
+build:
+  artifacts:
+    - image: tcktcontainerregistry.azurecr.io/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - infra/k8s/auth.depl.yaml
+    - infra/k8s/ingress-srv.yaml
