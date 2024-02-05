@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { currentUser } from '../middlewares/current-user';
+import { currentUser } from '@selmathistckt/common';
 
 interface CustomSessionData {
     jwt?: string; // or whatever the type of your jwt property is

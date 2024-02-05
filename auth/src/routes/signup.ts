@@ -3,8 +3,7 @@ import {body} from 'express-validator';
 // import jwt, { Secret } from 'jsonwebtoken';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/user';
-import { BadRequestError } from '../errors/bad-request-error';
-import { validateRequest } from '../middlewares/validate-request';
+import { validateRequest, BadRequestError } from '@selmathistckt/common';
 const router = express.Router();
 
 router.post('/api/users/signup', [
