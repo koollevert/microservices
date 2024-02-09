@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import { app } from './app';
+import { app } from "./app";
 
 const start = async()=>{
     if(!process.env.JWT_KEY){
@@ -13,7 +13,8 @@ const start = async()=>{
     await mongoose.connect(process.env.MONGO_URL,{
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true
+        useCreateIndex: true 
+        
     }as any); 
     console.log('Connected to Mongodb');      
     } catch (err){
