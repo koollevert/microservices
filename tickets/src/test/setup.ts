@@ -25,7 +25,7 @@ beforeAll(async () => {
   await mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  } as mongoose.ConnectOptions);
+  } as mongoose.ConnectionOptions);
 
 });
 
