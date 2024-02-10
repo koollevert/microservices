@@ -1,17 +1,15 @@
-# Use the official NATS Streaming image as base
-FROM nats-streaming:0.17.0
+# Use an official NATS Streaming Server runtime as a parent image
+FROM nats-streaming:0.23.2
 
-# Set environment variables
-ENV NATS_PORT=4222
-ENV MONITORING_PORT=8222
-ENV HB_INTERVAL=5
-ENV HB_TIMEOUT=5s
-ENV MAX_CONNS=2
-ENV SUBSCRIPTIONS_DUMP=true
-ENV CLIENT_ID=ticketing
+# Metadata indicating an image maintainer
+# LABEL maintainer="Your Name <your.email@example.com>"
+LABEL maintainer="Joshua Mumo <joshuambiyu002@gmail.com>"
 
-# Expose ports
-EXPOSE $NATS_PORT $MONITORING_PORT
+# Expose the NATS Streaming port
+EXPOSE 4222
 
-# Start NATS Streaming server
-CMD ["nats-streaming-server", "-p", "$NATS_PORT", "-m", "$MONITORING_PORT", "-hbi", "$HB_INTERVAL", "-hbt", "$HB_TIMEOUT", "-SD", "-cid", "$CLIENT_ID"]
+# Set the default NATS Streaming Server configuration file
+# COPY nats-streaming.conf /etc/nats-streaming.conf
+
+# Command to start the NATS Streaming Server when the container is run
+CMD ["nats-streaming-server", "-c", "/etc/nats-streaming.conf"]
