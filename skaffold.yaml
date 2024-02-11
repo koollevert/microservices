@@ -4,7 +4,7 @@ metadata:
   name: tckt
 build:
   artifacts:
-    - image: tcktcontainerregistry.azurecr.io/auth
+    - image: tcktacrn.azurecr.io/auth
       context: auth
       docker:
         dockerfile: Dockerfile
