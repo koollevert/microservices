@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 import { app } from './app';
+import { natsWrapper } from './nats-wrapper';
 
 const start = async()=>{
     if(!process.env.JWT_KEY){
@@ -11,6 +12,7 @@ const start = async()=>{
         throw new Error('MONGO_URL Must be defined');
     }
     try { 
+    await natsWrapper.connect('tckt', 'gdfwre', 'http://nats-srv:4222' );
     await mongoose.connect(process.env.MONGO_URL,{
         useNewUrlParser: true,
         useUnifiedTopology: true,

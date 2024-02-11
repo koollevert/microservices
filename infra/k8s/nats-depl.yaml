@@ -29,13 +29,13 @@ spec:
               '2',
               '-SD',
               '-cid',
-              'ticketing',
+              'tckt',
             ]
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nats-svc
+  name: nats-srv
 spec:
   selector:
     app: nats
