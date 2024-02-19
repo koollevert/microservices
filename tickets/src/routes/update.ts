@@ -1,9 +1,10 @@
 import express, {Request, Response} from 'express';
 import {body} from 'express-validator';
 import { Ticket } from '../models/ticket';
-import { validateRequest, NotAuthorizedError, NotFoundError, requireAuth } from '@selmathistckt/common';
+import { validateRequest, NotAuthorizedError, NotFoundError, requireAuth, BadRequestError } from '@selmathistckt/common';
 import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-publisher';
 import { natsWrapper } from '../nats-wrapper';
+import { version } from 'mongoose';
 
 const router = express.Router();
 router.put('/api/tickets/:id',
@@ -24,6 +25,10 @@ router.put('/api/tickets/:id',
         throw new NotFoundError();
     }
 
+    if(ticket.orderId){
+        throw new BadRequestError('Cannot edit reserved ticket');
+    }
+
     if(ticket.userId !==req.currentUser!.id){
         throw new NotAuthorizedError();
     }
@@ -37,7 +42,8 @@ router.put('/api/tickets/:id',
         id: ticket.id,
         title: ticket.title,
         price: ticket.price,
-        userId: ticket.userId
+        userId: ticket.userId,
+        version: ticket.version,
     });
 
     res.send(ticket);
