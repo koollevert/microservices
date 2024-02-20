@@ -26,15 +26,15 @@ const ticketSchema=new mongoose.Schema({
     price: {
         type: Number,
         required: true,
-        nin: 0
+        min: 0
     }
 }, {
     toJSON: {
         transform(doc, ret){
             ret.id=ret._id;
             delete ret._id;
-        }
-    }
+        },
+    },
 });
 
 ticketSchema.set('versionKey', 'version');

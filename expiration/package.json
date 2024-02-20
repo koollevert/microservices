@@ -19,13 +19,13 @@
   "license": "ISC",
   "dependencies": {
     "@selmathistckt/common": "^1.0.5",
-    "@types/bull": "^4.10.0",
     "bull": "^4.12.2",
     "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "@types/bull": "^4.10.0",
     "@types/jest": "^29.5.12",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.2"
